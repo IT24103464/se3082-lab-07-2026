@@ -1,0 +1,48 @@
+================================
+Processes: 2
+================================
+Exercise 01 - Bcast + Send/Recv
+[Bcast] Time        = 0.0021 sec
+Exercise 02 - Scatter + Send/Recv
+[Scatter] Time        = 0.0016 sec
+Exercise 03 - Scatter + Gather
+[Gather] Time        = 0.0020 sec
+Exercise 04 - Scatter + Reduce
+[Reduce] Time        = 0.0013 sec
+Exercise 05 - Scatter + Allreduce
+[AllReduce] Time        = 0.0011 sec
+Exercise 06 - Scatter + Scan
+[SumScan] Time        = 0.0029 sec
+
+================================
+Processes: 4
+================================
+Exercise 01 - Bcast + Send/Recv
+[Bcast] Time        = 0.0045 sec
+Exercise 02 - Scatter + Send/Recv
+[Scatter] Time        = 0.0062 sec
+Exercise 03 - Scatter + Gather
+[Gather] Time        = 0.0058 sec
+Exercise 04 - Scatter + Reduce
+[Reduce] Time        = 0.0047 sec
+Exercise 05 - Scatter + Allreduce
+[AllReduce] Time        = 0.0061 sec
+Exercise 06 - Scatter + Scan
+[SumScan] Time        = 0.0081 sec
+
+================================
+Processes: 8
+================================
+Exercise 01 - Bcast + Send/Recv
+[Bcast] Time        = 0.0066 sec
+Exercise 02 - Scatter + Send/Recv
+[Scatter] Time        = 0.0051 sec
+Exercise 03 - Scatter + Gather
+[Gather] Time        = 0.0080 sec
+Exercise 04 - Scatter + Reduce
+[Reduce] Time        = 0.0078 sec
+Exercise 05 - Scatter + Allreduce
+[AllReduce] Time        = 0.0043 sec
+Exercise 06 - Scatter + Scan
+[SumScan] Time        = 0.0160 sec
+

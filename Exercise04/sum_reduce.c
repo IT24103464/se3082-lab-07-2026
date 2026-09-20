@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
         for (int i = 0; i < N; i++)
             array[i] = i + 1;
 
-        printf("Root filled array with values 1 to %d\n", N);
+        printf("Root filled array with values 1 to %d\n\n", N);
     }
 
     double start = MPI_Wtime();
@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
         local_sum += local_chunk[i];
     }
 
-    printf("  Rank %d: => local_sum = %lld\n", rank, local_sum);
+    printf("    Rank %d: => local_sum = %lld\n", rank, local_sum);
 
     MPI_Reduce(&local_sum, &total_sum, 1, MPI_LONG_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
 
@@ -50,5 +50,6 @@ int main(int argc, char **argv) {
 
     free(array);
     MPI_Finalize();
+    printf("\n\n");
     return 0;
 }

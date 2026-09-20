@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
         for (int i = 0; i < N; i++)
             array[i] = i + 1;
 
-        printf("Root filled array with values 1 to %d\n", N);
+        printf("Root filled array with values 1 to %d\n\n", N);
     }
 
     double start = MPI_Wtime();
@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     for (int i = 0; i < chunk_size; i++)
         local_sum += local_chunk[i];
 
-    printf("  Rank %d: => local_sum = %lld\n",
+    printf("    Rank %d: => local_sum = %lld\n",
            rank, local_sum);
 
     /* Collect results using point-to-point communication */
@@ -58,5 +58,6 @@ int main(int argc, char **argv) {
 
     free(array);
     MPI_Finalize();
+    printf("\n\n");
     return 0;
 }

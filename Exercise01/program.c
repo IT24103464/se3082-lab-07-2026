@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     if (rank == 0) {
         for (int i = 0; i < N; i++)
             array[i] = i + 1;
-        printf("Root filled array with values 1 to %d\n", N);
+        printf("Root filled array with values 1 to %d\n\n", N);
     }
 
     double start = MPI_Wtime();
@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     for (int i = start_idx; i < end_idx; i++)
         local_sum += array[i];
 
-    printf("  Rank %d: summed indices [%d, %d) => local_sum = %lld\n",
+    printf("    Rank %d: summed indices [%d, %d) => local_sum = %lld\n",
            rank, start_idx, end_idx, local_sum);
 
     /* Collect results using point-to-point communication */
@@ -70,5 +70,6 @@ int main(int argc, char **argv) {
 
     free(array);
     MPI_Finalize();
+    printf("\n\n");
     return 0;
 }

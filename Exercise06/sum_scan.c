@@ -52,13 +52,14 @@ int main(int argc, char **argv) {
     if (rank == size - 1) {
         double elapsed = MPI_Wtime() - start;
         long long expected = (long long)N * (N + 1) / 2;
-        printf("\n[AllReduce] Total sum   = %lld\n", prefix_sum);
-        printf("[AllReduce] Expected    = %lld\n", expected);
-        printf("[AllReduce] Correct?    = %s\n", prefix_sum == expected ? "YES" : "NO");
-        printf("[AllReduce] Time        = %.4f sec\n", elapsed);
+        printf("\n[SumScan] Total sum   = %lld\n", prefix_sum);
+        printf("[SumScan] Expected    = %lld\n", expected);
+        printf("[SumScan] Correct?    = %s\n", prefix_sum == expected ? "YES" : "NO");
+        printf("[SumScan] Time        = %.4f sec\n", elapsed);
     }
 
     free(array);
     MPI_Finalize();
+    printf("\n\n");
     return 0;
 }
