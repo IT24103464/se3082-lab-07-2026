@@ -12,11 +12,10 @@ int main(int argc, char **argv) {
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     int *array = NULL;
-    long long *recv_array = NULL;
+    long long total_sum = 0;
 
     if (rank == 0) {
         array = (int *)malloc(N * sizeof(int));
-        recv_array = (long long*)malloc(size * sizeof(long long));
 
         for (int i = 0; i < N; i++)
             array[i] = i + 1;
@@ -35,25 +34,20 @@ int main(int argc, char **argv) {
     for (int i = 0; i < chunk_size; i++) {
         local_sum += local_chunk[i];
     }
-        
 
     printf("  Rank %d: => local_sum = %lld\n", rank, local_sum);
 
-    MPI_Gather(&local_sum, 1, MPI_LONG_LONG, recv_array, 1, MPI_LONG_LONG, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&local_sum, &total_sum, 1, MPI_LONG_LONG, MPI_SUM, 0, MPI_COMM_WORLD);
 
     if (rank == 0) {
-        long long total_sum = 0;        
-        for (int r = 0; r < size; r++) {
-            total_sum += recv_array[r];
-        }
         double elapsed = MPI_Wtime() - start;
         long long expected = (long long)N * (N + 1) / 2;
-        printf("\n[Gather] Total sum   = %lld\n", total_sum);
-        printf("[Gather] Expected    = %lld\n", expected);
-        printf("[Gather] Correct?    = %s\n", total_sum == expected ? "YES" : "NO");
-        printf("[Gather] Time        = %.4f sec\n", elapsed);
+        printf("\n[Reduce] Total sum   = %lld\n", total_sum);
+        printf("[Reduce] Expected    = %lld\n", expected);
+        printf("[Reduce] Correct?    = %s\n", total_sum == expected ? "YES" : "NO");
+        printf("[Reduce] Time        = %.4f sec\n", elapsed);
     }
-    free(recv_array);
+
     free(array);
     MPI_Finalize();
     return 0;
